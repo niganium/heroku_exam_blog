@@ -28,7 +28,7 @@ class BlogsController < ApplicationController
   end
 
   def update
-    @blog = Blog.find(params[:id])   # 重複！
+    @blog = Blog.find(params[:id])   # 重複！！！
     if @blog.update(blog_params)
       redirect_to blogs_path, notice: "ブログを編集しました！"
     else
