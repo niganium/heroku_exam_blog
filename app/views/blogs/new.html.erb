@@ -1,6 +1,12 @@
+<div class ="jumbotron text-center"style ="height:300px; color:white; text-shadow: 2px 2px 4px #666; 
+ background:url(/assets/home-bg.jpg);  background-size:cover;">
+  <h1>新しいブログの作成</h1>
+</div>
+
+<div class =" text-center">
 <%= form_with(model: @blog, local: true) do |form| %>
   <% if @blog.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="text-danger">
       <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
       <ul>
 
@@ -12,12 +18,18 @@
   <% end %>
 
   <div class="blog_title">
-    <%= form.label :title %>
+    <h3>
+      <%= form.label :title %>
+    </h3>
     <%= form.text_field :title %>
   </div>
   <div class="blog_title">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
+    <h3>
+      <%= form.label :content %>
+    </h3>
+      <%= form.text_area :content, size: "50x12" %>
   </div>
-  <%= form.submit %>
+    <%= form.submit %>
 <% end %>
+</div>
+
