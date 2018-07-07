@@ -12,17 +12,40 @@
     <div class ="container">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <ul class="nav navbar-nav">
-          <li class="active">
-            <a href="/blogs"><span class="glyphicon glyphicon-home"></span> Index</a>
-          </li>
-          <li><a href="/blogs/new"><span class="glyphicon glyphicon-pencil"></span> New_Blog</a></li>
-        </ul>
+          <ul class="nav navbar-nav">
+          <% if logged_in? %>
+            <li>
+              <a href="/">Home</a>
+            </li>    
+            <li>
+              <a href="/blogs"><span></span> Index</a>
+            </li>
+            <li>
+              <a href="/blogs/new"><span></span> New_Blog</a>
+            </li>
+            <li>
+              <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
+            </li>
+            <li>
+              <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+            </li>
+          </ul>
+           <% else %>
+            <li>
+              <a href="/users/new"><span></span> Sign up</a>
+            </li>
+            <li>
+              <a href="/sessions/new"><span ></span> Login</a>
+            </li>
+            <li>
+              <a href="/about"><span ></span> About</a>
+            </li>
+          <% end %>
       </div>
     </nav>
     <%= yield %>
    <footer class="container-fluid text-center" style="color:blue;">
-    <a href="/">Phase3_Bootstrap  2018 Dive_Into_Code_Student.</a>
+    <p>Phase3_Bootstrap  2018 Dive_Into_Code_Student.</p>
   </footer>
     
     </div> 

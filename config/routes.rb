@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   get '/', to: "home#top"
+  get '/about', to: "home#about"
   resources :blogs
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users, only: [:new,:create, :show]
 end
