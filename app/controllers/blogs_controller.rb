@@ -8,11 +8,17 @@ class BlogsController < ApplicationController
   end
 
   def new
-    @blog = Blog.new
+    if params[:back]
+      @blog = Blog.new(blog_params)
+    else
+      @blog = Blog.new
+    end
   end
 
   def create
     @blog = Blog.new(blog_params)
+    @blog.user_id = current_user.id
+    
     if @blog.save
       redirect_to blogs_path, notice: "ブログを作成しました！"
     else
@@ -21,15 +27,16 @@ class BlogsController < ApplicationController
   end
 
   def show
-    @blog = Blog.find(params[:id])   # 重複！
+    @blog = Blog.find(params[:id])
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 
   def edit
-    @blog = Blog.find(params[:id])   # 重複！
+    @blog = Blog.find(params[:id])   
   end
 
   def update
-    @blog = Blog.find(params[:id])   # 重複！！！
+    @blog = Blog.find(params[:id])   
     if @blog.update(blog_params)
       redirect_to blogs_path, notice: "ブログを編集しました！"
     else
@@ -41,6 +48,7 @@ class BlogsController < ApplicationController
     @blog.destroy
     redirect_to blogs_path, notice:"ブログを削除しました！"
   end
+  
 
   private
 

@@ -1,0 +1,9 @@
+<div class="text-center">
+<% @blogs.each do |blog| %>
+    <div class="blogs-index">
+        <%= link_to blog.content, blog_path(blog.id) %>
+      </div>
+<% end %>
+</table>
+<br>
+</div>

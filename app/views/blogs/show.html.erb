@@ -1,0 +1,30 @@
+<div class="text-center main posts-show">
+    <div class="posts-show-item" >
+    <h1>
+        Title
+    </h1>
+    <h3>
+        <%= @blog.title %>
+    </h3>
+    <h1>
+        Content
+    </h1>
+    <h3>
+        <%= @blog.content %>
+    </h3>
+    
+    <div>
+        <% if @blog.user == current_user %>
+            <%= link_to "EDIT", edit_blog_path(@blog.id) %>
+            <%= link_to 'DELETE', blog_path(@blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+        <% end %>
+    
+<% unless @blog.user == current_user %>
+    <% if @favorite.present? %>
+        <%= link_to 'お気に入り解除する', favorite_path(blog_id: @blog.id), method: :delete, class: 'btn btn-danger' %>
+    <% else %>
+        <%= link_to 'お気に入りする', favorites_path(blog_id: @blog.id), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+<% end %>
+    </div>
+</div>

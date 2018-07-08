@@ -3,4 +3,14 @@
 
 <p>メールアドレス: <%= @user.email %></p>
 <p><%= @user.created_at %></p>
+
+<h1><%= @user.name %>のお気に入りブログ</h1>
+
+<% @favorites.each do |favorite| %>
+  <tr>
+    <td>タイトル  <%= favorite.blog.title %></td>
+    <td>ブログ <%= favorite.blog.content %></td>
+  </tr>
+<% end %>
+
 </div>
