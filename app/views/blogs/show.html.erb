@@ -16,7 +16,7 @@
     <div>
         <% if @blog.user == current_user %>
             <%= link_to "EDIT", edit_blog_path(@blog.id) %>
-            <%= link_to 'DELETE', blog_path(@blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+            <%= link_to 'DELETE', blog_path(@blog.id), method: :delete,data: { confirm: '本当に削除していいですか？' } %>
         <% end %>
     
 <% unless @blog.user == current_user %>
