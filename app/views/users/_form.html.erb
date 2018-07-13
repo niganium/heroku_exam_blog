@@ -1,0 +1,42 @@
+<%= form_with(model: @user, local: true, url: user_choose_new_or_edit) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2 class="alert alert-warning" role="alert"><%= @user.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li class="alert alert-warning" role="alert"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="user_name">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="user_email">
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="user_password">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="user_password_confirmation">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+  <div class="new_icon">
+    <p class="new_icon_lable"><%= form.label :icon %></p>
+    <p class="new_icon_image"><%= form.file_field :icon, id: :@user_icon %></p>
+    <%= image_tag(@user.icon.url) if @user.icon.url %>
+    <%= form.hidden_field :icon_cache %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
+<%= link_to "ユーザー詳細画面にもどる", user_path(@user.id) %>

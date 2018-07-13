@@ -1,16 +1,27 @@
 <div class =" text-center">
 <h1><%= @user.name %>のページ</h1>
 
+<p class="user_infomation_image">
+  <%= image_tag @user.icon %>
+</p>
+
 <p>メールアドレス: <%= @user.email %></p>
-<p><%= @user.created_at %></p>
+
+<p class="user_infomation">
+  <%= link_to 'ユーザー情報を編集', edit_user_path(@user.id), class: 'btn btn-warning' %>
+</p>
 
 <h1><%= @user.name %>のお気に入りブログ</h1>
 
 <% @favorites.each do |favorite| %>
-  <tr>
-    <td>タイトル  <%= favorite.blog.title %></td>
-    <td>ブログ <%= favorite.blog.content %></td>
-  </tr>
-<% end %>
+ <tr>
+      <td class="index_favorite_blog"><%= favorites_blog.user.name %></td>
+      <td class="index_favorite_blog"><%= favorites_blog.title %></td>
+      <td class="index_favorite_blog"><%= favorites_blog.content %></td>
+      <td class="index_favorite_blog_image">
+        <%= image_tag favorites_blog.image %>
+      </td>
+    </tr>
+  <% end %>
 
 </div>
